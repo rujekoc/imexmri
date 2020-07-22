@@ -57,10 +57,6 @@ opts = odeset('RelTol',rtol, 'AbsTol',atol,'InitialStep',hmin, 'MaxStep',hmax);
 [t,Ytrue] = ode15s(fn, tout, Y0, opts);
 Ytrue = Ytrue';
 
-% Visualization of reference solution
-nx = Pdata.nx;
-xspan = linspace(0,1,nx)';              % spatial discretization
-
 %------------------------------------------------------------------------------%
 
 filename = 'IMEXMRI3a_high_sym.mat';

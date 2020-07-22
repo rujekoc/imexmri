@@ -1,6 +1,6 @@
 % driver_prothero_robinson .
 % Kvaerno Prothero Robinson problem from
-% Sandu 2020: A Class of Multirate Infinitesimal GARK methods
+% Sandu 2019: A Class of Multirate Infinitesimal GARK methods
 % Test problem is nonlinear and given by
 %
 %  y^{f}' = \lambda^{f} *A(t,y^{f})

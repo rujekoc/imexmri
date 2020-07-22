@@ -12,7 +12,7 @@ IMEX-MRI methods of orders three (`IMEX-MRI3a`, `IMEX-MRI3b`) and four (`IMEX-MR
 where ```f^E``` denotes the slow-explicit part, ```f^I``` the slow-implicit part  and ```f^F``` denotes the fast part of the right hand side. In addition, we also run comparison tests with operator splitting methods that are normally used for these types of equations i.e. first order `Lie-Trotter operator splitting` and second order `Strang splitting`.
 
 We consider two test problems:
- * Kvaerno-Prothero-Robinson (KPR) problem (`driver_prothero_robinson.m`) from [A.Sandu, SIAM J. Numer. Anal., 2020](https://doi.org/10.1137/18M1205492)
+ * Kvaerno-Prothero-Robinson (KPR) problem (`driver_prothero_robinson.m`) from [A.Sandu, SIAM J. Numer. Anal., 2019](https://doi.org/10.1137/18M1205492)
  * Brusselator test problem with advection and diffusion (`driver_brusselatorPDE.m`)
  
  For both tests we output maximum errors, root-mean-square errors and their respective convergence rates. We also output number of fast and slow steps taken, number of slow nonlinear solves, and fast nonlinear solves. 

@@ -1,4 +1,4 @@
-# IMEX-MRI: Implicit-Explicit Multirate Infinitesimal Methods # 
+# IMEX-MRI: Implicit-Explicit Multirate Infinitesimal methods # 
 
 #### Rujeko Chinomona and Daniel R. Reynolds ####
 Department of Mathematics, Southern Methodist University

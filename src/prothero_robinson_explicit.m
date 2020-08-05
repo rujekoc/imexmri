@@ -1,8 +1,14 @@
 function [Udot] = prothero_robinson_explicit(t,U)
-  % [Udot] = prothero_robinson_explicit(t,U)
-  %
-  % Slow-explicit portion of the right hand side
-
+% Usage: [Udot] = prothero_robinson_explicit(t,U)
+%
+% Slow-explicit portion of the right hand side,
+% Kvaerno-Prothero-Robinson test problem
+%
+% Rujeko Chinomona
+% Department of Mathematics
+% Southern Methodist University
+% July 2020
+% All Rights Reserved
 
   global alpha
   global omega

@@ -1,7 +1,8 @@
 function J = brusselatorPDE_JacobianF(t, y)
 % usage: J = brusselatorPDE_JacobianF(t, y)
 %
-% Jacobian of the fast portion of the right hand side 
+% Jacobian of the fast portion of the right hand side,
+% stiff brusselator PDE test problem.
 %
 % Daniel R. Reynolds
 % Department of Mathematics

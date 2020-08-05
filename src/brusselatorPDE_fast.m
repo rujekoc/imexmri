@@ -1,7 +1,8 @@
 function dy = brusselatorPDE_fast(t, y)
 % usage: dy = brusselatorPDE_fast(t, y)
 %
-% Fast portion of right hand side 
+% Fast portion of right hand side,
+% stiff brusselator PDE test problem.
 %
 % Daniel R. Reynolds
 % Department of Mathematics

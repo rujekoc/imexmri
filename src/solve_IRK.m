@@ -1,7 +1,7 @@
 function [tvals,Y,nsteps,lits,h] = solve_IRK(fcn,Jfcn,tvals,Y0,B,rtol,atol,hmin,hmax,hinit)
 % usage: [tvals,Y,nsteps,lits,h] = solve_IRK(fcn,Jfcn,tvals,Y0,B,rtol,atol,hmin,hmax,hinit)
 %
-% Fixed time step implicit Runge-Kutta solver for the vector-valued
+% Adaptive time step implicit Runge-Kutta solver for the vector-valued
 % ODE problem
 %     y' = F(t,Y), t in tvals, y in R^m,
 %     Y(t0) = [y1(t0), y2(t0), ..., ym(t0)]'.

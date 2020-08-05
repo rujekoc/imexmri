@@ -92,7 +92,7 @@ function [tvals,Y,ns,nf,cnits,clits,snits,fnits,ierr] = solve_IMEX_MRI(fe,fi,ff,
       % bound internal time step
       h = min([hs, tvals(tstep+1)-t]);   % stop at output times
 
-      % call MIS stepper to do the work, increment counters
+      % call IMEX-MRI stepper to do the work, increment counters
       [Ynew,m,cni,cli,sni,fni,ierr] = step_IMEXMRI(fe,fi,ff,Jfi,Jff,t,Ynew,co,G,W,Bi,h,hf);
       ns    = ns + 1;
       nf    = nf + m;
@@ -125,15 +125,15 @@ function [Y,m,cnits,clits,snits,fnits,ierr] = step_IMEXMRI(fe,fi,ff,Jfi,Jff,t0,Y
   % usage: [Y,m,cnits,clits,snits,fnits,ierr] = step_IMEXMRI(fe,fi,ff,Jfi,Jff,t0,Y0,co,G,W,Bi,hs,hf)
   %
   % This routine performs a single step of an imex-at-slow multirate
-  % infinitesimal step (MIS) method for the vector-valued ODE problem
+  % infinitesimal step (IMEX-MRI) method for the vector-valued ODE problem
   %     y' = fs(t,Y) + ff(t,Y), t >= t0, y in R^n,
   %     Y0 = [y1(t0), y2(t0), ..., yn(t0)]'.
-  % This driver assumes that the 'outer' Butcher table is
-  % diagonally-implicit, and thus each slow MIS stage must be
-  % computed through solution of a nonlinear root-finding problem.
-  %
-  % This driver can handle both "solve-decoupled" approaches for the
-  % fast/slow time scales, calling appropriate functions to handle each case.
+  % This driver assumes that the IMEX-MRI method has a "solve-decoupled" structure
+  % coupling the fast/slow time scales.  Thus at each slow stage one may either solve
+  % for a diagonally-implicit stage using a nonlinear root-finding problem, or perform
+  % evolution of a modified IVP at the fast time scale.  Logic is included in the stage
+  % loop to determine the stage type, and then calls appropriate functions to handle
+  % each case.
   %
   % Inputs:
   %     fe     = function handle for (slow-explicit) ODE RHS
@@ -215,7 +215,7 @@ function [Y,m,cnits,clits,snits,fnits,ierr] = step_IMEXMRI(fe,fi,ff,Jfi,Jff,t0,Y
 
       % fast time scale evolution?
       if (Delta_co(stage) > 0)  % fast evolution
-        fprintf('Functionality not added yet')
+        fprintf('solve-coupled structure is not supported')
       else                        % no fast evolution
         [Y,FE,FI,sni,ierr] = dirk_nofast(fe,fi,Jfi,Y,t0,hs,FE,FI,co,G,W,stage);
         snits = snits + sni;

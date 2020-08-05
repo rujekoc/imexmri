@@ -1,7 +1,8 @@
 function dy = brusselatorPDE_explicit(t, y)
 % usage: dy = brusselatorPDE_explicit(t, y)
 %
-% Slow-explicit portion of right hand side
+% Slow-explicit portion of right hand side,
+% stiff brusselator PDE test problem.
 %
 % Daniel R. Reynolds
 % Department of Mathematics

@@ -1,7 +1,8 @@
 function J = brusselatorPDE_JacobianI(t, y)
 % usage: J = brusselatorPDE_JacobianI(t, y)
 %
-% Jacobian of the slow-implicit portion of the right hand side 
+% Jacobian of the slow-implicit portion of the right hand side,
+% stiff brusselator PDE test problem.
 %
 % Daniel R. Reynolds
 % Department of Mathematics

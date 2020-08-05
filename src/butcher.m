@@ -14,7 +14,7 @@ function B = butcher(method_name,symbolic)
 %
 % If the 'symbolic' input flag is both present and is 'true', then
 % the resulting Butcher table is returned in symbolic format (to
-% full precision). 
+% full precision).
 %
 % Method types are specified by the abbreviations:
 %       ERK - explicit Runge Kutta (strictly lower-triangular A)
@@ -51,20 +51,20 @@ function B = butcher(method_name,symbolic)
 % variables to eliminate floating-point calculation error.  This
 % routine tests the full analytical order conditions up to 6;
 % thereafter it merely checks Butcher's simplifying assumptions to
-% assess higher orders of accuracy.  
+% assess higher orders of accuracy.
 %
 % Since Butcher's simplifying assumptions correspond to sufficient
 % (but not necessary) conditions for order of accuracy, we may
 % report an accuracy of 6 when in fact the method has higher
 % order. Methods where we report 6 but have higher published order
 % are marked with "+".
-% 
+%
 % However, since we analytically assess the *necessary* order
 % conditions up to 6, any method with published accuracy <= 6 that
 % does NOT attain this published order is marked with "-".
 %
 % Explicit, non-embedded methods:
-% 
+%
 %             Name             |  s |  q  lq  |  tol
 %   --------------------------------------------------
 %                     ERK-1-1  |  1 |  1   1  | 1e-40
@@ -99,7 +99,7 @@ function B = butcher(method_name,symbolic)
 %
 %
 % Explicit, embedded methods:
-% 
+%
 %                              |    |  Method |  Embedding  |
 %             Name             |  s |  q  lq  |  p  lp      | tol
 %   -----------------------------------------------------------------
@@ -119,10 +119,10 @@ function B = butcher(method_name,symbolic)
 %         ARK5(4)8L[2]SAb-ERK  |  8 |  5   5  |  4   4       | 1e-25
 %              Verner-6-5-ERK  |  8 |  6   6  |  5   5       | 1e-40
 %            Fehlberg-8-7-ERK  | 13 |  6+  8  |  6+  7       | 1e-40
-% 
+%
 %
 % Diagonally-implicit, non-embedded methods:
-% 
+%
 %             Name             |  s |  q  lq   A   B   L  |  qs  tol
 %   ------------------------------------------------------------------
 %           SSP2(2,2,2)-SDIRK  |  2 |  2   2   Y   Y   Y  |  1  1e-40
@@ -150,7 +150,7 @@ function B = butcher(method_name,symbolic)
 %
 %
 % Diagonally-implicit, embedded methods:
-% 
+%
 %                              |    |       Method        |      Embedding      |
 %             Name             |  s |  q  lq   A   B   L  |  p  lp   A   B   L  |  qs  tol
 %   ----------------------------------------------------------------------------------------
@@ -172,7 +172,7 @@ function B = butcher(method_name,symbolic)
 %
 %
 % Fully-implicit, non-embedded methods:
-% 
+%
 %             Name             |  s |  q  lq   A   B   L  |  qs  tol
 %   --------------------------------------------------------------------
 %                     IRK-1-1  |  1 |  1   1   Y   Y   Y  |  1  1e-40
@@ -202,14 +202,13 @@ function B = butcher(method_name,symbolic)
 %          LobattoIII-5-8-IRK  |  5 |  8   8              |  4  1e-40
 %            RadauIIA-5-9-IRK  |  5 |  9   8   Y   Y   Y  |  5  1e-15
 %              Gauss-6-12-IRK  |  6 | 12   8   Y   Y      |  6  1e-16
-%   
+%
 %
 %------------------------------------------------------------
 % Programmer(s):  Daniel R. Reynolds @ SMU
 %------------------------------------------------------------
 % Copyright (c) 2018, Southern Methodist University.
 % All rights reserved.
-% For details, see the LICENSE file.
 %------------------------------------------------------------
 
 % set anonymous function to handle behavior of double-vs-symbolic output

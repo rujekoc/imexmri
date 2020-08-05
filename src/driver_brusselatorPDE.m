@@ -149,7 +149,8 @@ function doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innerso
     end
 
     % Output error information
-    fprintf('| %.5e | %5d | %.5e | %.5e | %.5e | %.5e | %.5e |\n',hs(j),m,hf,err_max(j), max_rate(j),err_rms(j),rms_rate(j))
+    fprintf('| %.5e | %5d | %.5e | %.5e | %.5e | %.5e | %.5e |\n',...
+            hs(j),m,hf,err_max(j), max_rate(j),err_rms(j),rms_rate(j))
 
     % Print out other solver stats
     fprintf('    num slow steps    = %i\n',ns);
@@ -246,7 +247,8 @@ function dofirstordersplit(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,erksolver,irksolver
     end
 
     % Output error information
-    fprintf('| %.5e | %5d | %.5e | %.5e | %.5e | %.5e | %.5e |\n',hs(j),m,hf,err_max(j), max_rate(j),err_rms(j),rms_rate(j))
+    fprintf('| %.5e | %5d | %.5e | %.5e | %.5e | %.5e | %.5e |\n',...
+            hs(j),m,hf,err_max(j), max_rate(j),err_rms(j),rms_rate(j))
 
     % Print out other solver stats
     fprintf('    num slow-explicit steps   = %i\n', nfe(j));
@@ -346,7 +348,8 @@ function doStrang(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,erksolver,irksolver)
     end
 
     % Output error information
-    fprintf('| %.5e | %5d | %.5e | %.5e | %.5e | %.5e | %.5e |\n',hs(j),m,hf,err_max(j), max_rate(j),err_rms(j),rms_rate(j))
+    fprintf('| %.5e | %5d | %.5e | %.5e | %.5e | %.5e | %.5e |\n',...
+            hs(j),m,hf,err_max(j), max_rate(j),err_rms(j),rms_rate(j))
 
     % Print out other solver stats
     fprintf('    num slow-explicit steps   = %i\n', nfe(j));

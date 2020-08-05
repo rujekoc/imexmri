@@ -1,5 +1,13 @@
 function [Y0,t0,tf] = brusselatorPDE_setup()
-  % usage: function[Y0,t0,tf] = brusselatorPDE_setup()
+% usage: [Y0,t0,tf] = brusselatorPDE_setup()
+%
+% Parameter and initial condition setup for stiff brusselator PDE test problem.
+%
+% Rujeko Chinomona
+% Department of Mathematics
+% Southern Methodist University
+% July 2020
+% All Rights Reserved
 
   global Pdata;
   Pdata.a = 0.6;

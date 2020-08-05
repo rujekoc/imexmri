@@ -1,7 +1,7 @@
 function J = brusselatorPDE_Jacobian(t, y)
 % usage: J = brusselatorPDE_Jacobian(t, y)
 %
-% Full Jacobian
+% Full Jacobian routine for the stiff brusselator PDE test problem.
 %
 % Daniel R. Reynolds
 % Department of Mathematics

@@ -1,7 +1,8 @@
-function J = brusselator_JacobianE(t, y)
-% usage: J = brusselator_JacobianE(t, y)
+function J = brusselatorPDE_JacobianE(t, y)
+% usage: J = brusselatorPDE_JacobianE(t, y)
 %
-% Jacobian of the slow-explicit component of the right hand side 
+% Jacobian of the slow-explicit component of the right hand side,
+% stiff brusselator PDE test problem.
 %
 % Daniel R. Reynolds
 % Department of Mathematics

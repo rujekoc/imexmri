@@ -1,10 +1,17 @@
 function [U0,t0,tf] = prothero_robinson_setup()
-  % Usage: [U0,t0,tf] = prothero_robinson_setup()
-  %
-  % Output:
-  % U0 - initial conditions
-  % [t0,tf] - time interval
-
+% Usage: [U0,t0,tf] = prothero_robinson_setup()
+%
+% Parameter and initial condition setup for
+% Kvaerno-Prothero-Robinson test problem.
+%
+% Output:
+%   U0 - initial conditions
+%   [t0,tf] - time interval
+%
+% Rujeko Chinomona
+% Department of Mathematics
+% Southern Methodist University
+% July 2020
 
   % define reusable global variables
   global alpha

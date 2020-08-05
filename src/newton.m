@@ -4,10 +4,10 @@ function [y,lits,ierr] = newton(Fcn, Afn, y0, Fdata, ftol, stol, maxit)
 % Newton solver for the root-finding problem defined by the function Fcn,
 %     F(y,Fdata) = 0
 %
-% Inputs:  Fcn = function name for nonlinear residual, F(y,Fdata).  Note, all
+% Inputs:  Fcn = function name/handle for nonlinear residual, F(y,Fdata).  Note, all
 %                data required to evaluate F (other than y) should be stored
 %                in the data structure Fdata.
-%          Afn = function name for Jacobian of nonlinear residual,
+%          Afn = function name/handle for Jacobian of nonlinear residual,
 %                A = partial_y F(y,Fdata).
 %                Afn should use the same data structure for additional data
 %                as F.

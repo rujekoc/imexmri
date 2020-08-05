@@ -1,7 +1,14 @@
 function [J] = prothero_robinson_Jacobian(t,U)
-  % [J] = prothero_robinson_Jacobian(t,U)
-  %
-  % Full Jacobian of the right hand side
+% Usage: [J] = prothero_robinson_Jacobian(t,U)
+%
+% Full Jacobian of the right hand side,
+% Kvaerno-Prothero-Robinson test problem
+%
+% Rujeko Chinomona
+% Department of Mathematics
+% Southern Methodist University
+% July 2020
+% All Rights Reserved
 
   global alpha
   global omega

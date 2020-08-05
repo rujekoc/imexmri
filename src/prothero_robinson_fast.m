@@ -1,7 +1,14 @@
 function [Udot] = prothero_robinson_fast(t,U)
-  % [Udot] = prothero_robinson_fast(t,U)
-  %
-  % Fast component
+% Usage: [Udot] = prothero_robinson_fast(t,U)
+%
+% Fast component of the right-hand side,
+% Kvaerno-Prothero-Robinson test problem
+%
+% Rujeko Chinomona
+% Department of Mathematics
+% Southern Methodist University
+% July 2020
+% All Rights Reserved
 
   global alpha
   global omega

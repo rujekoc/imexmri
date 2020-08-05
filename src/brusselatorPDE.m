@@ -1,6 +1,8 @@
 function dy = brusselatorPDE(t, y)
 % usage: dy = brusselatorPDE(t, y)
 %
+% Full RHS routine for the stiff brusselator PDE test problem.
+%
 % Daniel R. Reynolds
 % Department of Mathematics
 % Southern Methodist University

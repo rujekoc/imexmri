@@ -50,10 +50,9 @@ m     = 10;                              % time scale separation factor
 
 % set reference solution
 hmin = 1e-7;
-hmax = 1.0;
 rtol = 2.5e-14;
 atol = 1e-14*ones(length(Y0),1);
-opts = odeset('RelTol',rtol, 'AbsTol',atol,'InitialStep',hmin, 'MaxStep',hmax);
+opts = odeset('RelTol',rtol, 'AbsTol',atol,'InitialStep',hmin);
 [t,Ytrue] = ode15s(fn, tout, Y0, opts);
 Ytrue = Ytrue';
 
@@ -105,76 +104,6 @@ hs = (tout(2)-tout(1))*0.5.^(0:15);
 doStrang(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,erksolver,irksolver)
 
 %------------------------------------------------------------------------------%
-function doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innersolver)
-
-  % Set innersolver
-  Bi = butcher(innersolver);
-
-  % Initialize storage
-  numhs = length(hs);
-  err_max = zeros(1,numhs);
-  err_rms = zeros(1,numhs);
-  max_rate = zeros(1,numhs);
-  rms_rate = zeros(1,numhs);
-  nslow = zeros(1,numhs);
-  nfast = zeros(1,numhs);
-  snits = zeros(1,numhs);
-  fnits = zeros(1,numhs);
-
-  fprintf('Running with %s and innersolver %s\n',mrisolver,innersolver);
-  fprintf('|    hs       |   m   |    hf       | max err     | max rate    | rms err     | rms rate    |\n');
-  fprintf('|-------------------------------------------------------------------------------------------|\n');
-
-  for j = 1:numhs
-    % Set fast time step
-    hf = hs(j)/m;
-
-    % Call to solver
-    [~,Y,ns,nf,~,~,sni,fni,ierr] = solve_IMEX_MRI(fe,fi,ff,Ji,Jf,tout,Y0,c,G,W,Bi,hs(j),hf);
-    if (ierr ~= 0)   % on a solver failure, just skip to the next h
-      err_max(j) = 1e4;
-      err_rms(j) = 1e4;
-      fprintf('    Solver failure, skipping to next h value\n')
-      continue
-    end
-
-    % Error calculation
-    err_max(j) = max(max(abs(Y-Ytrue)));
-    err_rms(j) = sqrt(sum(sum((Y-Ytrue).^2))/numel(Y));
-
-    % Rate of convergence calculation
-    if j > 1
-      max_rate(j) = log(err_max(j-1)/err_max(j))/log(hs(j-1)/hs(j));
-      rms_rate(j) = log(err_rms(j-1)/err_rms(j))/log(hs(j-1)/hs(j));
-    end
-
-    % Output error information
-    fprintf('| %.5e | %5d | %.5e | %.5e | %.5e | %.5e | %.5e |\n',...
-            hs(j),m,hf,err_max(j), max_rate(j),err_rms(j),rms_rate(j))
-
-    % Print out other solver stats
-    fprintf('    num slow steps    = %i\n',ns);
-    fprintf('    num fast steps    = %i\n',nf);
-
-    if (sni > 0)
-      fprintf('    slow Newton iters = %i\n', sni);
-      snits(j) = sni;
-    end
-    if (fni > 0)
-      fprintf('    fast Newton iters = %i\n', fni);
-      fnits(j) = fni;
-    end
-  end
-  fprintf('|---------------------------------------------------------------------------------------------------------|\n');
-
-  % Best-fit convergence rate
-  p1 = polyfit(log(hs),log(err_max),1);
-  fprintf('best-fit max rate = %g\n', p1(1));
-  p2 = polyfit(log(hs),log(err_rms),1);
-  fprintf('best-fit rms rate = %g\n', p2(1));
-end
-
-%------------------------------------------------------------------------------%
 function dofirstordersplit(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,erksolver,irksolver)
 
   % Set solvers
@@ -220,12 +149,12 @@ function dofirstordersplit(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,erksolver,irksolver
         nfe(j) = nfe(j) + nse;
 
         % solve slow-implicit
-        [~,Yi,nsi,sni,~] = solve_IRK(fi,Ji,tspan,Ye(:,end),D,rtol,atol,h,h,h);
+        [~,Yi,nsi,sni,~] = solve_DIRK(fi,Ji,tspan,Ye(:,end),D,rtol,atol,h,h,h);
         nfi(j) = nfi(j) + nsi;
         snits(j) = snits(j) + sni;
 
         % solve fast
-        [~,Yf,nsf,fni,~] = solve_IRK(ff,Jf,tspan,Yi(:,end),D,rtol,atol,hf,hf,hf);
+        [~,Yf,nsf,fni,~] = solve_DIRK(ff,Jf,tspan,Yi(:,end),D,rtol,atol,hf,hf,hf);
         nff(j) = nff(j) + nsf;
         fnits(j) = fnits(j) + fni;
 

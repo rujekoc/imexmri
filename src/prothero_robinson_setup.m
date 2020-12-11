@@ -28,6 +28,8 @@ function [U0,t0,tf] = prothero_robinson_setup()
   epsilon = 0.1;
   lambda_f = -10;
   lambda_s = -1;
+  C = [lambda_f, ((1-epsilon)/alpha)*(lambda_f - lambda_s); ...
+   -alpha*epsilon*(lambda_f - lambda_s), lambda_s];
 
   % set time interval
   t0 = 0;

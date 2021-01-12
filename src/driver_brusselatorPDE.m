@@ -91,7 +91,7 @@ innersolver = 'Cash(5,3,4)-SDIRK';
 doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innersolver)
 clear c G W Q
 
-------------------------------------------------------------------------------%
+%------------------------------------------------------------------------------%
 % Set up tables for Lie-Trotter splitting
 erksolver = 'ERK-1-1';
 irksolver = 'SDIRK-2-1';

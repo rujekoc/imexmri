@@ -10,13 +10,6 @@ function [J] = prothero_robinson_JacobianE(t,U)
 % July 2020
 % All Rights Reserved
 
-  global alpha
-  global omega
-  global epsilon
-  global lambda_f
-  global lambda_s
-  global C
-
   J = zeros(2,2);
   J(2,2) = sin(t)/2/U(2)/U(2);
 end

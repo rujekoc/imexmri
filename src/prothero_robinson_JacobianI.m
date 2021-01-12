@@ -15,7 +15,7 @@ function [J] = prothero_robinson_JacobianI(t,U)
   global epsilon
   global lambda_f
   global lambda_s
-  global C
+
   dA_dU1 = 1 - (-3 + U(1)*U(1) - cos(omega*t))/2/U(1)/U(1);
   dB_dU2 = 1 - (-2 + U(2)*U(2) - cos(t))/2/U(2)/U(2);
   J = zeros(2,2);

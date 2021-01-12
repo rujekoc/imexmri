@@ -66,7 +66,7 @@ W = {double(Q.W0)};
 c = double(Q.c);
 innersolver = 'ESDIRK-3-3';
 doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innersolver)
-clear c, G, W, Q
+clear c G W Q
 
 %------------------------------------------------------------------------------%
 
@@ -78,7 +78,7 @@ W = {double(Q.W0)};
 c = double(Q.c);
 innersolver = 'ESDIRK-3-3';
 doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innersolver)
-clear c, G, W, Q
+clear c G W Q
 
 %------------------------------------------------------------------------------%
 filename = 'IMEXMRI4_high_sym.mat';
@@ -89,7 +89,7 @@ W = {double(Q.W0),double(Q.W1)};
 c = double(Q.c);
 innersolver = 'Cash(5,3,4)-SDIRK';
 doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innersolver)
-clear c, G, W, Q
+clear c G W Q
 
 ------------------------------------------------------------------------------%
 % Set up tables for Lie-Trotter splitting
@@ -115,7 +115,7 @@ G{1} = [1/3 0 0 0 0 0 0;
    -lam, 0, 0, 0, 0, 0, lam];
 innersolver = 'ESDIRK-3-3';
 domrigarktest(fs,ff,Js,Jf,tout,Y0,Ytrue,hs,m,G,c,mrisolver,innersolver)
-clear c G Bi
+clear c G
 
 %------------------------------------------------------------------------------%
 mrisolver = 'MRI-GARK-ESDIRK46a';
@@ -190,7 +190,7 @@ G1(10,9) = -(149)/(300.0);
 G = {G0,G1};
 innersolver = 'Cash(5,3,4)-SDIRK';
 domrigarktest(fs,ff,Js,Jf,tout,Y0,Ytrue,hsmod,m,G,c,mrisolver,innersolver)
-clear c G Bi
+clear c G
 %------------------------------------------------------------------------------%
 function dofirstordersplit(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,erksolver,irksolver)
 

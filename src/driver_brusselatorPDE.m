@@ -88,7 +88,6 @@ G = {double(Q.G0),double(Q.G1)};
 W = {double(Q.W0),double(Q.W1)};
 c = double(Q.c);
 innersolver = 'Cash(5,3,4)-SDIRK';
-% hs = (tout(2)-tout(1))/32*0.5.^(0:7);
 doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innersolver)
 clear c, G, W, Q
 

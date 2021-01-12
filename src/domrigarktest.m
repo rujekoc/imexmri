@@ -1,18 +1,16 @@
-function doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innersolver)
-  % USAGE: doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innersolver)
+function domrigarktest(fs,ff,Js,Jf,tout,Y0,Ytrue,hs,m,G,c,mrisolver,innersolver)
+  % USAGE: domrigarktest(fs,ff,Js,Jf,tout,Y0,Ytrue,hs,m,G,c,mrisolver,innersolver)
   %
   % INPUTS:
-  % fe    - slow-explicit rhs
-  % fi    - slow-implicit rhs
-  % Ji    - Jacobian of slow-implicit
+  % fs    - slow rhs
+  % Js    - Jacobian of slow
   % Jf    - Jacobian of fast
   % tout  - output times
   % Y0    - initial conditions
   % Ytrue - reference solution
   % hs    - slow time step
   % m     - time scale separation factor hf = hs/m
-  % G     - coupling coefficients for slow-implicit
-  % W     - coupling coefficients for slow-explicit
+  % G     - coupling coefficients for slow
   % c     - abscissae for method
   % mrisolver - name of IMEX-MRI-GARK method
   % innersolver - name of fast integrator
@@ -23,8 +21,7 @@ function doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innerso
   %
   % Rujeko Chinomona
   % Southern Methodist University
-  % August 2020
-
+  % January 2021
 
   % Set innersolver
   Bi = butcher(innersolver);
@@ -41,18 +38,17 @@ function doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innerso
   fnits = zeros(1,numhs);
 
   fprintf('Running with %s and innersolver %s\n',mrisolver,innersolver);
-  fprintf('|    hs       |   m   |    hf       | max err     | max rate    | rms err     | rms rate    |\n');
-  fprintf('|-------------------------------------------------------------------------------------------|\n');
-
+  fprintf('|    hs       |   m   |    hf       | max err     | max rate    | rms err     | rms rate    | time        |\n');
+  fprintf('|---------------------------------------------------------------------------------------------------------|\n');
   for j = 1:numhs
     % Set fast time step
     hf = hs(j)/m;
 
     % Call to solver
-    [~,Y,ns,nf,~,~,sni,fni,ierr] = solve_IMEX_MRI(fe,fi,ff,Ji,Jf,tout,Y0,c,G,W,Bi,hs(j),hf);
+    [tvals,Y,ns,nf,cni,cli,sni,fni,ierr] = solve_MRI(fs,ff,Js,Jf,tout,Y0,c,G,Bi,hs(j),hf);
     if (ierr ~= 0)   % on a solver failure, just skip to the next h
-      err_max(j) = 1e4;
-      err_rms(j) = 1e4;
+      err_max(k,j) = 1e4;
+      err_rms(k,j) = 1e4;
       fprintf('    Solver failure, skipping to next h value\n')
       continue
     end
@@ -83,9 +79,9 @@ function doimexmritest(fe,fi,ff,Ji,Jf,tout,Y0,Ytrue,hs,m,G,W,c,mrisolver,innerso
       fprintf('    fast Newton iters = %i\n', fni);
       fnits(j) = fni;
     end
+
   end
   fprintf('|---------------------------------------------------------------------------------------------------------|\n');
-
   % Best-fit convergence rate
   p1 = polyfit(log(hs),log(err_max),1);
   fprintf('best-fit max rate = %g\n', p1(1));

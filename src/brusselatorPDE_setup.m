@@ -18,12 +18,12 @@ function [Y0,t0,tf] = brusselatorPDE_setup()
   Pdata.a1 = 1e-3;
   Pdata.a2 = 1e-3;
   Pdata.a3 = 1e-3;
-  Pdata.nx = 100;
+  Pdata.nx = 201;
   Pdata.dx = 1/(Pdata.nx-1);
   Pdata.ep = 1/100;
   xspan = linspace(0,1,Pdata.nx)';
   t0 = 0;
-  tf = 10;
+  tf = 3;
 
   % Set initial conditions
   u0 = Pdata.a + 0.1*sin(pi*xspan);

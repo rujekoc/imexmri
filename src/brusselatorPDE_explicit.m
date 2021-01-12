@@ -12,17 +12,11 @@ function dy = brusselatorPDE_explicit(t, y)
 
 % extract problem data
 global Pdata;
-a  = Pdata.a;
 a1 = Pdata.a1;
 a2 = Pdata.a2;
 a3 = Pdata.a3;
-b  = Pdata.b;
-d1 = Pdata.d1;
-d2 = Pdata.d2;
-d3 = Pdata.d3;
 nx  = Pdata.nx;
 dx = Pdata.dx;
-ep = Pdata.ep;
 
 % extract solution components
 u = y(1:nx);

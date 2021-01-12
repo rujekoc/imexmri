@@ -9,7 +9,7 @@ IMEX-MRI methods of orders three (`IMEX-MRI3a`, `IMEX-MRI3b`) and four (`IMEX-MR
 
   ```y' = f^E(t,y) + f^I(t,y) + f^F(t,y)```
 
-where ```f^E``` denotes the slow-explicit part, ```f^I``` the slow-implicit part  and ```f^F``` denotes the fast part of the right hand side. In addition, we also run comparison tests with implicit MRI-GARK methods (`MRI-GARK-ESDIRK34a`, `MRI-GARK-ESDIRK46a`) from  A.Sandu, SIAM J. Numer. Anal., 2019](https://doi.org/10.1137/18M1205492) and operator splitting methods that are normally used for these types of equations i.e. first order "Lie-Trotter operator splitting" and second order "Strang-Marchuk splitting".
+where ```f^E``` denotes the slow-explicit part, ```f^I``` the slow-implicit part  and ```f^F``` denotes the fast part of the right hand side. In addition, we also run comparison tests with implicit MRI-GARK methods (`MRI-GARK-ESDIRK34a`, `MRI-GARK-ESDIRK46a`) from  [A.Sandu, SIAM J. Numer. Anal., 2019](https://doi.org/10.1137/18M1205492) and operator splitting methods that are normally used for these types of equations i.e. first order "Lie-Trotter operator splitting" and second order "Strang-Marchuk splitting".
 
 We include two test problems:
  * A modified Kvaerno-Prothero-Robinson (KPR) problem (`driver_prothero_robinson.m`), adapted from [A.Sandu, SIAM J. Numer. Anal., 2019](https://doi.org/10.1137/18M1205492)

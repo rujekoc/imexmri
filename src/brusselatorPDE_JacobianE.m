@@ -12,17 +12,11 @@ function J = brusselatorPDE_JacobianE(t, y)
 
 % extract problem data
 global Pdata;
-a  = Pdata.a;
 a1 = Pdata.a1;
 a2 = Pdata.a2;
 a3 = Pdata.a3;
-b  = Pdata.b;
-d1 = Pdata.d1;
-d2 = Pdata.d2;
-d3 = Pdata.d3;
 nx  = Pdata.nx;
 dx = Pdata.dx;
-ep = Pdata.ep;
 
 % extract solution components
 u = y(1:nx);
@@ -42,17 +36,17 @@ Jww = sparse([],[],[],nx,nx,3*nx);
 
 % advection components
 for j=2:nx-1
-   Juu(j,j-1) = Juu(j,j-1) + a1/dx/2.0;
+   Juu(j,j-1) = Juu(j,j-1) - a1/dx/2.0;
    Juu(j,j+1) = Juu(j,j+1) + a1/dx/2.0;
 end
 
 for j=2:nx-1
-   Jvv(j,j-1) = Jvv(j,j-1) + a2/dx/2.0;
+   Jvv(j,j-1) = Jvv(j,j-1) - a2/dx/2.0;
    Jvv(j,j+1) = Jvv(j,j+1) + a2/dx/2.0;
 end
 
 for j=2:nx-1
-   Jww(j,j-1) = Jww(j,j-1) + a3/dx/2.0;
+   Jww(j,j-1) = Jww(j,j-1) - a3/dx/2.0;
    Jww(j,j+1) = Jww(j,j+1) + a3/dx/2.0;
 end
 
